@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add category</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    
+</head>
+<body>
+<div class="col-md-4">
+<form th:object="${category}" th:action="@{savecategory}" action="#" method="post">
+<fieldset>
+<legend>Add category</legend>
+<input type="text" id="name" th:field="*{name}" class="form-control"/>
+<input type=submit class= "btn btn-primary" value="Save category"></input>
+</fieldset>
+</form>
+</div>
+<a href="/categorylist">Back to categories</a>
+</body>
+</html>
