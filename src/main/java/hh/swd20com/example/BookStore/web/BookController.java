@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import hh.swd20com.example.BookStore.domain.Book;
 import hh.swd20com.example.BookStore.domain.BookRepository;
 import hh.swd20com.example.BookStore.domain.CategoryRepository;
+import hh.swd20com.example.BookStore.domain.UserRepository;
 
 @Controller
 public class BookController {
@@ -24,6 +25,9 @@ public class BookController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@RequestMapping(value = "/booklist", method=RequestMethod.GET)
 	public String bookFrom(Model model) {
 		model.addAttribute("books", repository.findAll());
@@ -31,7 +35,7 @@ public class BookController {
 		}
 	//delete book
 	@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		repository.deleteById(bookId);
 		return "redirect:../booklist";
